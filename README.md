@@ -1,7 +1,20 @@
-# Algo-trading-project
+# **Trade Signal Alerts**
+
+## Project Team Members:
+- Andrew Crawford
+- Servontius Turner
+- Sylvia 
+- Sam Kohnle
+
+#
+
+## Project Objective  
+
+
+Our project is to expand the work of Larry Williams and apply the Volatility Break-out strategy to cryptocurrency markets historical data. Furthermore, we want a program that will send a signal to buy or sell. 
+
 
 ## About The Strategy
-
 
 Volatility Break-out strategies are based on the concept that if the market makes a movement of a certain size in a short period of time, this movement will continue and positions can be opened to capitilize on this movement. Volatility, as [defined by Investopedia](https://www.investopedia.com/terms/v/volatility.asp), is the measurement of movement by either the Standard Deviation or variance between the same security. While the typical Volatility strategy and that definition don't match 1-to-1, the thought behind them are the same. A particular strategy created by trader Larry Williams includes a multiplier number in order to figure out how large the move needs to be before a trader takes action. By default, Larry suggests 25%. That number is then multiplied by the previous day’s High and Low. Those respective numbers are then added and subtracted from the current Open price to create a "Range"<sup>1</sup>.
 
@@ -23,6 +36,7 @@ Larry also has suggests closing a position if:
 ![Take Profit - Long Entry](./images/LW_Long_TP.png)
 ![Take Profit - short Entry](./images/LW_Short_TP.png)
 
+
 ## Our proposal
 We want to find out if this strategy can be improved on using Machine Learning to determine if we can find a better % multiplier to use or if Larry Williams was on the money with the use of a 25% move. WE are looking to use the following markets to test:
 
@@ -36,6 +50,34 @@ We are hoping to answer the following questions:
 2. Can Machine Learning provide a better metric for price movement than what Larry Williams presents?
 3. Can one trade using this strategy and the default 25% move or ML percent move perform better than buying and holding a security?
 4. If successful, how often does this strategy require review of the percent move number?
+
+
+#
+
+## Imports
+- pip install python=3.7 conda
+- pip install hvpolot
+- pip install termcolor
+- pip install twelvedata[pandas,matplotlib,plotly,websocket-client]
+
+
+## Datasets Used:
+We will be using data obtained from multiple APIs to compare dataset differences. 
+
+Real-time stock and crypto data:
+- Finnhub.io
+
+- [twelvedata_api_url](https://api.twelvedata.com/time_series?symbol={symbol}&interval=1day&outputsize=5000&apikey={api_key})
+
+
+
+## Additional ideas:
+
+Use a SQL database to hold the stock/crypto data day to day
+Design an in-depth dashboard for investors to quickly visualize their portfolios
+
+Are their large arbitrage opportunities when a cryptocurrency has moved + or - 25% in a day.
+
 
 ## Sources
 1. [Williams, Larry "Long-Term Secrets to Short-Term Trading" 6 Dec. 2011. Accessed 21Feb. 2022.](https://www.amazon.com/Long-Term-Secrets-Short-Term-Trading-Williams/dp/0470915730/ref=sr_1_2?keywords=long+term+secrets+to+short+term+trading+by+larry+williams&qid=1645494049&sprefix=short+term+sec%2Caps%2C117&sr=8-2)
