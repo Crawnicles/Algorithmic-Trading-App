@@ -1,27 +1,27 @@
-# **Increasing Stock Returns by modifying Williams Break-Out Volatilty Strategy**
+# **Larry Williams Algorithmic Trading Strategies**
 
 
-## Project Team Members:
+### Project Team Members:
 - Andrew Crawford
 - Servontius Turner
 - Sylvia Fan
 - Sam Kohnle
 
----
+#
 
-## Project Objective  
+### Project Objective  
 
----
+#
 
-In this project we explore the Williams Break-Out Volatility (BOV) strategy. With the help of python, we will compare the returns of our Williams BOV strategy returns with the returns of SPY ETF to see how the strategy performs in the real-world market.
+We set out to test the Williams % R and the Williams Break-Out Volatility (BOV) strategy on historical market data using python. We will compare the returns of the strategies to see if any outperform the market or the buy and hold strategy.
 
----
+#
 
 
 
-## About The Strategy
+# About The Strategies
 
----
+### Volatility Break-out:
 
 Volatility Break-out strategies are based on the concept that if the market makes a movement of a certain size in a short period of time, this movement will continue and positions can be opened to capitilize on this movement. Volatility, as [defined by Investopedia](https://www.investopedia.com/terms/v/volatility.asp), is the measurement of movement by either the Standard Deviation or variance between the same security. While the typical Volatility strategy and that definition don't match 1-to-1, the thought behind them are the same. A particular strategy created by trader Larry Williams includes a multiplier number in order to figure out how large the move needs to be before a trader takes action. By default, Larry suggests 25%. That number is then multiplied by the previous day’s High and Low. Those respective numbers are then added and subtracted from the current Open price to create a "Range"<sup>1</sup>.
 
@@ -41,123 +41,175 @@ Larry also has suggests closing a position if:
 2. After 24hours
 
 ![Take Profit - Long Entry](./images/LW_Long_TP.png)
+#
 ![Take Profit - short Entry](./images/LW_Short_TP.png)
 
----
+#
+
+### Williams Percent Range (% R):
+
+
+Williams %R, as [defined by Investopedia](https://www.investopedia.com/terms/w/williamsr.asp), also known as the Williams Percent Range, is a type of momentum indicator that moves between 0 and -100 and measures overbought and oversold levels. The Williams %R may be used to find entry and exit points in the market. The indicator is very similar to the Stochastic oscillator and is used in the same way. It was developed by Larry Williams and it compares a stock’s closing price to the high-low range over a specific period, typically 14 days or periods." 
+
+![wr](./images/wr.png)
+
+#
+
 ## Our Modifications
 
----
+#
 
-We want to find out if this strategy can be improved on using Machine Learning to determine if we can find a better % multiplier to use or if Larry Williams was on the money with the use of a 25% move. We are looking to use the following markets to test:
+We want to find out if this strategy can be improved with a better % multiplier or if Larry Williams was on the money with 25%. We are looking to use the following markets to test (Larry trades in futures markets):
 
 - S&P 500 Index (Stock ticker SPX)
 - CBOE Volatility Index (Symbol VIX)
 - Bitcoin (Symbol BTC)
 
+
 We are hoping to answer the following questions:
 
 1. Does a 25% move produce a winning trading strategy?
-2. Can Machine Learning provide a better metric for price movement than what Larry Williams presents?
-3. Can one trade using this strategy and the default 25% move or ML percent move perform better than buying and holding a security?
-4. If successful, how often does this strategy require review of the percent move number?
+2. Can one trade using this strategy and the default 25% move perform better than buying and holding a security?
+3. If successful, how often does this strategy require review of the percent move number?
 
----
+#
 
 # Implementation in Python
+
 1. Importing Packages
-2. Extracting Stock Data from Alpaca
-3. Williams BOV Logic
-4. Williams BOV Signals Plot
-5. Creating the Trading Strategy
-6. Plotting the Trading Lists
-7. Creating our Position
-8. Backtesting
-9. SPY ETF Comparison
+2. Read CSV data into a Pandas DataFrame and clean data 
+3. Define functions for each strategy
+4. Run and Display Entry/Exit Points
+5. Backtesting
+6. Display with streamlit
+
 
 
 ## Step 1: Imports
 
-### Install packages not included with Colab
-```
-!pip install python_dotenv
-!pip install alpaca_trade_api
-!pip install backtrader
-!pip install hvplot`
-```
+#
 
-
-### Import Packages
-
+AlgoFunctions.py
 ```
-from alpaca_trade_api.rest import TimeFrame
-import alpaca_trade_api as tradeapi
-from alpaca_trade_api.stream import Stream
-import backtrader as bt
-import matplotlib
-import pandas as pd
-from alpaca_trade_api import TimeFrameUnit
-from pandas.core.frame import DataFrame
 import numpy as np
-import requests
-import matplotlib.pyplot as plt
-from math import floor
-from termcolor import colored as cl
+import pandas as pd
+```
+
+PlotFunctions.py
+```
+import pandas as pd
+from AlgoFunctions import Algo
 import hvplot.pandas
+from pandas.core.frame import DataFrame
+import matplotlib
+import matplotlib.pyplot as plt
+```
+
+BacktestFunctions.py
+```
+import numpy as np
+```
+
+App.py
+```
+import streamlit as st
 from pathlib import Path
-
+from PlotFunctions import *
+import holoviews as 
 ```
+#
+
+## Step 2: Read CSV data into a Pandas DataFrame using pd.read_csv and clean it to include the Williams Percent Range and the Short-Window Moving Average columns
+
+#
+
+![dataclean](./images/dataclean.png)
+
+#
+
+## Step 3: Create a class to hold the functions for each strategy 
 
 
-### Import Machine Learning packages
+- def __init__(self, short_window, long_window):
+Each St
+- def get_william_r(high, low, close, lookback):
+- def ma_cross(short_window, df, percent: int):
+- def williams_r(df, percent: int):
+- def vol_breakout(dataframe, percentage: int):
 
-```
-from sklearn import svm
-from sklearn.preprocessing import StandardScaler
-from pandas.tseries.offsets import DateOffset
-from sklearn.metrics import classification_report
-```
+#
 
-### Plots parameters
-```
-plt.rcParams['figure.figsize'] = (20,10)
-plt.style.use('fivethirtyeight')
-```
+Code explanation: Refer to [AlgoFunctions.py](https://github.com/Crawnicles/Algo-trading-project/blob/main/AlgoFunctions.py)
 
+#
 
-## Step 2: Datasets Used:
-We will be using data obtained from multiple APIs to compare dataset differences. 
+## Step 4: Define Entry/Exit Points to plot for each strategy
 
-Real-time stock and crypto data:
-
-- [twelvedata_api_url](https://api.twelvedata.com/time_series?symbol={symbol}&interval=1day&outputsize=5000&apikey={api_key})
+#
 
 
-## Step 3: Williams Break-Out Volatility logic
 
 
-## Step 4: 
+![s1](./images/s1.png)
+
+#
+
+![s2](./images/s2.png)
+
+#
+
+![s3](./images/s3.png)
+
+#
+
+Code explanation: Refer to [PlotFunctions.py](https://github.com/Crawnicles/Algo-trading-project/blob/main/PlotFunctions.py)
+
+#
 
 
-## Step 5: 
+## Step 5: Backtesting
+
+#
 
 
-## Step 6: 
+Our results suggest that using strategy 2, the Williams % R in the Bitcoin markets would return up to ~350% in late 2021 if beginning with a $100,000 investment five years ago.
+
+#
+
+![cs1](./images/cs1.png)
+
+#
+
+![cs2](./images/cs2.png)
+
+#
+
+![cs3](./images/cs3.png)
+
+#
+
+Code explanation: Refer to [BacktestFunctions.py](https://github.com/Crawnicles/Algo-trading-project/blob/main/BacktestFunctions.py)
+
+#
+
+## Step 6: Display with streamlit
+
+#
+
+Refer to [App.py](https://github.com/Crawnicles/Algo-trading-project/blob/main/App.py)
+
+#
+
+## Additional research
 
 
-## Step 7: 
+Can Machine Learning provide a better metric for price movement than what Larry Williams presents?
 
-
-## Step 8: 
-
-## Step 9: 
-
-## Additional ideas:
-
-Use a SQL database to hold the stock/crypto data day to day
-Design an in-depth dashboard for investors to quickly visualize their portfolios
-
-Are their large arbitrage opportunities when a cryptocurrency has moved + or - 25% in a day.
-
+Can one trade using this strategy and the default 25% move or ML percent move perform better than buying and holding a security?
 
 ## Sources
 1. [Williams, Larry "Long-Term Secrets to Short-Term Trading" 6 Dec. 2011. Accessed 21Feb. 2022.](https://www.amazon.com/Long-Term-Secrets-Short-Term-Trading-Williams/dp/0470915730/ref=sr_1_2?keywords=long+term+secrets+to+short+term+trading+by+larry+williams&qid=1645494049&sprefix=short+term+sec%2Caps%2C117&sr=8-2)
+2. [Algorithmic Trading with Williams %R in Python](https://medium.com/codex/algorithmic-trading-with-williams-r-in-python-5a8e0db9ff1f)
+
+3. [Investopedia Williams %R Definition](https://www.investopedia.com/terms/w/williamsr.asp)
+
