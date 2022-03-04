@@ -54,7 +54,7 @@ Larry also has suggests closing a position if:
 
 Williams %R, as [defined by Investopedia](https://www.investopedia.com/terms/w/williamsr.asp), also known as the Williams Percent Range, is a type of momentum indicator that moves between 0 and -100 and measures overbought and oversold levels. The Williams %R may be used to find entry and exit points in the market. The indicator is very similar to the Stochastic oscillator and is used in the same way. It was developed by Larry Williams and it compares a stock’s closing price to the high-low range over a specific period, typically 14 days or periods." 
 
-![wr](./images/wr.png)
+<img src ="https://github.com/Crawnicles/Algo-trading-project/blob/main/images/wr.png?raw=true">
 
 #
 
