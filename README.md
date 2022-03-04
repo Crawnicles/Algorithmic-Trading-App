@@ -25,7 +25,7 @@ We set out to test the Williams % R and the Williams Break-Out Volatility (BOV) 
 
 Volatility Break-out strategies are based on the concept that if the market makes a movement of a certain size in a short period of time, this movement will continue and positions can be opened to capitilize on this movement. Volatility, as [defined by Investopedia](https://www.investopedia.com/terms/v/volatility.asp), is the measurement of movement by either the Standard Deviation or variance between the same security. While the typical Volatility strategy and that definition don't match 1-to-1, the thought behind them are the same. A particular strategy created by trader Larry Williams includes a multiplier number in order to figure out how large the move needs to be before a trader takes action. By default, Larry suggests 25%. That number is then multiplied by the previous day’s High and Low. Those respective numbers are then added and subtracted from the current Open price to create a "Range"<sup>1</sup>.
 
-![Larry Williams Range](./images/LW_range.png)
+<img src="https://github.com/Crawnicles/Algo-trading-project/blob/main/images/LW_range.png?raw=true"/>
 
 Larry Williams then suggests opening a position based on the following factors:
 
@@ -40,9 +40,12 @@ Larry also has suggests closing a position if:
 
 2. After 24hours
 
-![Take Profit - Long Entry](./images/LW_Long_TP.png)
-#
-![Take Profit - short Entry](./images/LW_Short_TP.png)
+<img src="https://github.com/Crawnicles/Algo-trading-project/blob/main/images/LW_Long_TP.png?raw=true"/>
+
+# 
+
+<img src="https://github.com/Crawnicles/Algo-trading-project/blob/main/images/LW_Short_TP.png?raw=true"/>
+
 
 #
 
@@ -123,7 +126,7 @@ import holoviews as
 
 #
 
-![dataclean](./images/dataclean.png)
+<img src="https://github.com/Crawnicles/Algo-trading-project/blob/main/images/dataclean.png?raw=true"/>
 
 #
 
@@ -149,16 +152,16 @@ Code explanation: Refer to [AlgoFunctions.py](https://github.com/Crawnicles/Algo
 
 
 
+<img src="https://github.com/Crawnicles/Algo-trading-project/blob/main/images/s1.png?raw=true"/>
 
-![s1](./images/s1.png)
-
-#
-
-![s2](./images/s2.png)
 
 #
+<img src="https://github.com/Crawnicles/Algo-trading-project/blob/main/images/s2.png?raw=true"/>
 
-![s3](./images/s3.png)
+
+#
+<img src="https://github.com/Crawnicles/Algo-trading-project/blob/main/images/s3.png?raw=true"/>
+
 
 #
 
@@ -175,16 +178,16 @@ Code explanation: Refer to [PlotFunctions.py](https://github.com/Crawnicles/Algo
 Our results suggest that using strategy 2, the Williams % R in the Bitcoin markets would return up to ~350% in late 2021 if beginning with a $100,000 investment five years ago.
 
 #
+<img src="https://github.com/Crawnicles/Algo-trading-project/blob/main/images/cs1.png?raw=true"/>
 
-![cs1](./images/cs1.png)
-
-#
-
-![cs2](./images/cs2.png)
 
 #
+<img src="https://github.com/Crawnicles/Algo-trading-project/blob/main/images/cs2.png?raw=true"/>
 
-![cs3](./images/cs3.png)
+
+#
+<img src="https://github.com/Crawnicles/Algo-trading-project/blob/main/images/cs3.png?raw=true"/>
+
 
 #
 
