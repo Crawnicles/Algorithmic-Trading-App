@@ -68,7 +68,6 @@ class Algo:
         :param percentage: Percent move expected
         :return: Returns a Pandas Dataframe
         """
-
         # Calculate the Top and Bottom of the range to determine where positions will be taken
         top_range_calc = (dataframe.iloc[1]['High'] * percentage) / 100
         bottom_range_calc = (dataframe.iloc[1]['Low'] * percentage) / 100
@@ -83,6 +82,10 @@ class Algo:
         dataframe['Bottom of Range'] = bottom_of_range
         dataframe['Cross Below Range'] = np.where(dataframe['Close'] < bottom_of_range, -1, 0)
         dataframe['Short Signal'] = dataframe['Cross Below Range'].diff()
+        # Find the columns where a cross happens and updates the column with a 1 if there is a cross
+        dataframe['Above Range'] = np.where(dataframe['Close'] > round(top_of_range, 2), 1, 0)
+        dataframe['Below Range'] = np.where(dataframe['Close'] < round(bottom_of_range, 2), 1, 0)
+  #return(df)
 
         signal_dict = {
             2: 'short',
