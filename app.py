@@ -268,7 +268,8 @@ elif nav_select == 'VIX':
         vix_return_s3 = calculate_s3_returns(vix_strategy_3,initial_capital,share_size)
         vix_returnplot_s3 = display_returns(vix_return_s3,'VolatilityBreakout','VIX',(-1,1))
         st.write(hv.render(vix_returnplot_s3,backend='bokeh'))   
-if st.sidebar.button("Celebration Time!"):
-    st.sidebar.balloons()
+
 st.sidebar.markdown('---------')    
 st.sidebar.markdown('[Check out our project on GitHub](https://github.com/Crawnicles/Algo-trading-project)')
+if st.sidebar.button("Celebration Time!"):
+    st.sidebar.balloons()
