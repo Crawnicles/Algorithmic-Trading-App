@@ -41,15 +41,24 @@ share_size = -500
 # Define the list of years displayed in the Entry/Exit Points Charts
 years = ['2017', '2018', '2019', '2020', '2021', '2022']
 years = st.sidebar.multiselect(
-      'Please select the year(s) you would like to model:',
+      'Please select the year(s) you would like to view:',
       ['2017', '2018', '2019', '2020', '2021', '2022'],
       ['2020', '2021',])
-st.sidebar.write('You selected:', years)
 
 
 #Set the percent for algorithm 
 percent = float(st.sidebar.number_input("Breakout Percent",min_value= 1,value= 20))
 st.sidebar.write("Breakout Percentage you set is:",percent, " %")
+
+st.sidebar.markdown('---------')    
+st.sidebar.markdown('[Check out our project on GitHub](https://github.com/Crawnicles/Algo-trading-project)')
+
+if st.sidebar.button("Celebration Time!"):
+    st.sidebar.balloons()
+    # embed a song
+    with st.sidebar:    
+        components.iframe(src="http://sdasofia.org/dataup/MUSIC/Music-classical/secret%20garden/Poeme%204.59.mp3", height=70, width=210)
+#reset button status when select other options in dropdown box
 
 
 if nav_select == 'About':
@@ -76,7 +85,7 @@ elif nav_select == 'SPY':
         st.write(hv.render(spy_plot_s1, backend='bokeh'))
         st.markdown('### Strategy Backtest Result: Portfolio Cumulative Returns')
         spy_return_s1 = calculate_s1_returns(spy_strategy_1,initial_capital,share_size)
-        spy_returnplot_s1 = display_returns(spy_return_s1,'William%R + SMA&LMA','SPY',(-1,1),years)
+        spy_returnplot_s1 = display_returns(spy_return_s1,'William%R + SMA&LMA','SPY',years)
         st.write(hv.render(spy_returnplot_s1,backend='bokeh'))   
         #st.markdown('Place holder text for explanation of visual')
     elif Strategy_select == 'Strategy 2: William%R':
@@ -87,7 +96,7 @@ elif nav_select == 'SPY':
         st.write(hv.render(spy_plot_s2, backend='bokeh'))
         st.markdown('### Strategy Backtest Result: Portfolio Cumulative Returns')
         spy_return_s2 = calculate_s2_returns(spy_strategy_2,initial_capital,share_size)
-        spy_returnplot_s2 = display_returns(spy_return_s2,'William%R','SPY',(-1,1),years)
+        spy_returnplot_s2 = display_returns(spy_return_s2,'William%R','SPY',years)
         st.write(hv.render(spy_returnplot_s2,backend='bokeh'))   
         #st.markdown('Place holder text for explanation of visual')
     elif Strategy_select == 'Strategy 3: VolatilityBreakout':
@@ -98,7 +107,7 @@ elif nav_select == 'SPY':
         st.write(hv.render(spy_plot_s3, backend='bokeh'))
         st.markdown('### Strategy Backtest Result: Portfolio Cumulative Returns')
         spy_return_s3 = calculate_s3_returns(spy_strategy_3,initial_capital,share_size)
-        spy_returnplot_s3 = display_returns(spy_return_s3,'VolatilityBreakout','SPY',(-1,1),years)
+        spy_returnplot_s3 = display_returns(spy_return_s3,'VolatilityBreakout','SPY',years)
         st.write(hv.render(spy_returnplot_s3,backend='bokeh'))   
         #st.markdown('Place holder text for explanation of visual')
     elif Strategy_select == 'All Strategies':
@@ -117,13 +126,13 @@ elif nav_select == 'SPY':
         st.write(hv.render(spy_plot_s3, backend='bokeh'))
         st.markdown('### Strategy Backtest Result: Portfolio Cumulative Returns')  
         spy_return_s1 = calculate_s1_returns(spy_strategy_1,initial_capital,share_size)
-        spy_returnplot_s1 = display_returns(spy_return_s1,'William%R + SMA&LMA','SPY',(-1,1),years)
+        spy_returnplot_s1 = display_returns(spy_return_s1,'William%R + SMA&LMA','SPY',years)
         st.write(hv.render(spy_returnplot_s1,backend='bokeh'))         
         spy_return_s2 = calculate_s2_returns(spy_strategy_2,initial_capital,share_size)
-        spy_returnplot_s2 = display_returns(spy_return_s2,'William%R','SPY',(-1,1),years)
+        spy_returnplot_s2 = display_returns(spy_return_s2,'William%R','SPY',years)
         st.write(hv.render(spy_returnplot_s2,backend='bokeh'))  
         spy_return_s3 = calculate_s3_returns(spy_strategy_3,initial_capital,share_size)
-        spy_returnplot_s3 = display_returns(spy_return_s3,'VolatilityBreakout','SPY',(-1,1),years)
+        spy_returnplot_s3 = display_returns(spy_return_s3,'VolatilityBreakout','SPY',years)
         st.write(hv.render(spy_returnplot_s3,backend='bokeh'))   
 
 elif nav_select == 'BTC':
@@ -147,7 +156,7 @@ elif nav_select == 'BTC':
         st.write(hv.render(btc_plot_s1, backend='bokeh'))
         st.markdown('### Strategy Backtest Result: Portfolio Cumulative Returns')
         btc_return_s1 = calculate_s1_returns(btc_strategy_1,initial_capital,share_size)
-        btc_returnplot_s1 = display_returns(btc_return_s1,'William%R + SMA&LMA','BTC',(-500,500),years)
+        btc_returnplot_s1 = display_returns(btc_return_s1,'William%R + SMA&LMA','BTC',years)
         st.write(hv.render(btc_returnplot_s1,backend='bokeh'))   
         #st.markdown('Place holder text for explanation of visual')
     elif Strategy_select == 'Strategy 2: William%R':
@@ -158,7 +167,7 @@ elif nav_select == 'BTC':
         st.write(hv.render(btc_plot_s2, backend='bokeh'))
         st.markdown('### Strategy Backtest Result: Portfolio Cumulative Returns')
         btc_return_s2 = calculate_s2_returns(btc_strategy_2,initial_capital,share_size)
-        btc_returnplot_s2 = display_returns(btc_return_s2,'William%R','BTC',(-1000,1000),years)
+        btc_returnplot_s2 = display_returns(btc_return_s2,'William%R','BTC',years)
         st.write(hv.render(btc_returnplot_s2,backend='bokeh'))   
         #st.markdown('Place holder text for explanation of visual')
     elif Strategy_select == 'Strategy 3: VolatilityBreakout':
@@ -169,7 +178,7 @@ elif nav_select == 'BTC':
         st.write(hv.render(btc_plot_s3, backend='bokeh'))
         st.markdown('### Strategy Backtest Result: Portfolio Cumulative Returns')
         btc_return_s3 = calculate_s3_returns(btc_strategy_3,initial_capital,share_size)
-        btc_returnplot_s3 = display_returns(btc_return_s3,'VolatilityBreakout','BTC',(-1000,1000),years)
+        btc_returnplot_s3 = display_returns(btc_return_s3,'VolatilityBreakout','BTC',years)
         st.write(hv.render(btc_returnplot_s3,backend='bokeh'))   
         #st.markdown('Place holder text for explanation of visual')
     elif Strategy_select == 'All Strategies':
@@ -189,13 +198,13 @@ elif nav_select == 'BTC':
         
         st.markdown('### Strategy Backtest Result: Portfolio Cumulative Returns')  
         btc_return_s1 = calculate_s1_returns(btc_strategy_1,initial_capital,share_size)
-        btc_returnplot_s1 = display_returns(btc_return_s1,'William%R + SMA&LMA','BTC',(-500,500),years)
+        btc_returnplot_s1 = display_returns(btc_return_s1,'William%R + SMA&LMA','BTC',years)
         st.write(hv.render(btc_returnplot_s1,backend='bokeh'))         
         btc_return_s2 = calculate_s2_returns(btc_strategy_2,initial_capital,share_size)
-        btc_returnplot_s2 = display_returns(btc_return_s2,'William%R','BTC',(-1000,1000),years)
+        btc_returnplot_s2 = display_returns(btc_return_s2,'William%R','BTC',years)
         st.write(hv.render(btc_returnplot_s2,backend='bokeh'))  
         btc_return_s3 = calculate_s3_returns(btc_strategy_3,initial_capital,share_size)
-        btc_returnplot_s3 = display_returns(btc_return_s3,'VolatilityBreakout','BTC',(-1000,1000),years)
+        btc_returnplot_s3 = display_returns(btc_return_s3,'VolatilityBreakout','BTC',years)
         st.write(hv.render(btc_returnplot_s3,backend='bokeh'))   
 
 
@@ -220,7 +229,7 @@ elif nav_select == 'VIX':
         st.write(hv.render(vix_plot_s1, backend='bokeh'))
         st.markdown('### Strategy Backtest Result: Portfolio Cumulative Returns')
         vix_return_s1 = calculate_s1_returns(vix_strategy_1,initial_capital,share_size)
-        vix_returnplot_s1 = display_returns(vix_return_s1,'William%R + SMA&LMA','VIX',(-1,1))
+        vix_returnplot_s1 = display_returns(vix_return_s1,'William%R + SMA&LMA','VIX',years)
         st.write(hv.render(vix_returnplot_s1,backend='bokeh'))   
         #st.markdown('Place holder text for explanation of visual')
     elif Strategy_select == 'Strategy 2: William%R':
@@ -231,7 +240,7 @@ elif nav_select == 'VIX':
         st.write(hv.render(vix_plot_s2, backend='bokeh'))
         st.markdown('### Strategy Backtest Result: Portfolio Cumulative Returns')
         vix_return_s2 = calculate_s2_returns(vix_strategy_2,initial_capital,share_size)
-        vix_returnplot_s2 = display_returns(vix_return_s2,'William%R','VIX',(-1,1))
+        vix_returnplot_s2 = display_returns(vix_return_s2,'William%R','VIX',years)
         st.write(hv.render(vix_returnplot_s2,backend='bokeh'))   
         #st.markdown('Place holder text for explanation of visual')
     elif Strategy_select == 'Strategy 3: VolatilityBreakout':
@@ -242,7 +251,7 @@ elif nav_select == 'VIX':
         st.write(hv.render(vix_plot_s3, backend='bokeh'))
         st.markdown('### Strategy Backtest Result: Portfolio Cumulative Returns')
         vix_return_s3 = calculate_s3_returns(vix_strategy_3,initial_capital,share_size)
-        vix_returnplot_s3 = display_returns(vix_return_s3,'VolatilityBreakout','VIX',(-1,1))
+        vix_returnplot_s3 = display_returns(vix_return_s3,'VolatilityBreakout','VIX',years)
         st.write(hv.render(vix_returnplot_s3,backend='bokeh'))   
         #st.markdown('Place holder text for explanation of visual')
     elif Strategy_select == 'All Strategies':
@@ -261,20 +270,12 @@ elif nav_select == 'VIX':
         st.write(hv.render(vix_plot_s3, backend='bokeh'))
         st.markdown('### Strategy Backtest Result: Portfolio Cumulative Returns')  
         vix_return_s1 = calculate_s1_returns(vix_strategy_1,initial_capital,share_size)
-        vix_returnplot_s1 = display_returns(vix_return_s1,'William%R + SMA&LMA','VIX',(-1,1))
+        vix_returnplot_s1 = display_returns(vix_return_s1,'William%R + SMA&LMA','VIX',years)
         st.write(hv.render(vix_returnplot_s1,backend='bokeh'))         
         vix_return_s2 = calculate_s2_returns(vix_strategy_2,initial_capital,share_size)
-        vix_returnplot_s2 = display_returns(vix_return_s2,'William%R','VIX',(-1,1))
+        vix_returnplot_s2 = display_returns(vix_return_s2,'William%R','VIX',years)
         st.write(hv.render(vix_returnplot_s2,backend='bokeh'))  
         vix_return_s3 = calculate_s3_returns(vix_strategy_3,initial_capital,share_size)
-        vix_returnplot_s3 = display_returns(vix_return_s3,'VolatilityBreakout','VIX',(-1,1))
+        vix_returnplot_s3 = display_returns(vix_return_s3,'VolatilityBreakout','VIX',years)
         st.write(hv.render(vix_returnplot_s3,backend='bokeh'))   
 
-st.sidebar.markdown('---------')    
-st.sidebar.markdown('[Check out our project on GitHub](https://github.com/Crawnicles/Algo-trading-project)')
-if st.sidebar.button("Celebration Time!"):
-    st.sidebar.balloons()
-
-# embed a song
-with st.sidebar:    
-    components.iframe(src="http://sdasofia.org/dataup/MUSIC/Music-classical/secret%20garden/Poeme%204.59.mp3", height=70, width=210)

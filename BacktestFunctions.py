@@ -23,12 +23,12 @@ def calculate_s1_returns(df, initial_capital, share_size):
     df["Portfolio Cumulative Returns"] = (1 + df["Portfolio_Daily_Returns"]).cumprod() - 1
     return df
 
-def display_returns(df, strategy_name, name: str, ylim, list_of_years):
+def display_returns(df, strategy_name, name: str, list_of_years):
     df['Year'] = pd.to_datetime(df.index).to_period("Y")
     df['Year'] = df['Year'].dt.strftime('%Y')
     df = df[df["Year"].isin(list_of_years) ]
     plot = df["Portfolio Cumulative Returns"].hvplot(
-    title=name + " Portfolio Cumulative Returns of " + strategy_name, ylim=ylim)
+    title=name + " Portfolio Cumulative Returns of " + strategy_name)#, ylim=ylim)
         
     return plot
 
