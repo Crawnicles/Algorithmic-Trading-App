@@ -3,6 +3,7 @@ from pathlib import Path
 from PlotFunctions import *
 from BacktestFunctions import *
 import holoviews as hv
+import streamlit.components.v1 as components
 
 # Display the Project info in the sidebar
 st.sidebar.title('Project 3: Williams Break-Out Volatility Strategy')
@@ -273,3 +274,7 @@ st.sidebar.markdown('---------')
 st.sidebar.markdown('[Check out our project on GitHub](https://github.com/Crawnicles/Algo-trading-project)')
 if st.sidebar.button("Celebration Time!"):
     st.sidebar.balloons()
+
+# embed a song
+with st.sidebar:    
+    components.iframe(src="http://sdasofia.org/dataup/MUSIC/Music-classical/secret%20garden/Poeme%204.59.mp3", height=70, width=210)
