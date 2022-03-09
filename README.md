@@ -201,6 +201,8 @@ Code explanation: Refer to [BacktestFunctions.py](https://github.com/Crawnicles/
 
 Refer to [App.py](https://github.com/Crawnicles/Algo-trading-project/blob/main/App.py)
 
+[Deployed App]()
+
 #
 
 ## Additional research
